@@ -1,0 +1,16 @@
+[
+{
+  "modid": "step_by_step",
+  "name": "Step by Step",
+  "description": "Step by step Minecraft Forge mod.",
+  "version": "1.0",
+  "mcversion": "${minecraft_version}",
+  "url": "https://github.com/toto-castaldi/forge-minecraft-walkthrough-generic",
+  "updateUrl": "",
+  "authorList": ["Toto"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
