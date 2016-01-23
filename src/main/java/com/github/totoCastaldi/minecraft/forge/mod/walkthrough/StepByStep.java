@@ -11,9 +11,13 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.common.config.Configuration;
 import org.apache.logging.log4j.Logger;
+
+import java.util.Random;
 
 @Mod(modid = StepByStep.modid, name = StepByStep.name, version = StepByStep.version)
 public class StepByStep
@@ -45,6 +49,8 @@ public class StepByStep
                 .setEastBlockTextureName(modid + ":red")
                 .setSouthBlockTextureName(modid + ":orange")
                 .setWestBlockTextureName(modid + ":purple")
+                .setQuantityDropped(4)
+                .setItemDropped(Items.diamond)
                 .setHardness(1.0F)
                 .setStepSound(Block.soundTypeGlass)
                 .setCreativeTab(CreativeTabs.tabFood)
@@ -71,6 +77,8 @@ public class StepByStep
         private IIcon southIcon;
         private IIcon westIcon;
         private IIcon eastIcon;
+        private int quantityDropped;
+        private Item itemDropped;
 
         public CustomBlock(Material material, String name) {
             super(material);
@@ -113,6 +121,11 @@ public class StepByStep
             return this;
         }
 
+        public CustomBlock setQuantityDropped(int quantityDropped) {
+            this.quantityDropped = quantityDropped;
+            return this;
+        }
+
         @Override
         @SideOnly(Side.CLIENT)
         public void registerBlockIcons(IIconRegister iconRegister) {
@@ -138,6 +151,20 @@ public class StepByStep
                 case 5: return this.northIcon;
                 default: return null;
             }
+        }
+
+        public CustomBlock setItemDropped(Item itemDropped) {
+            this.itemDropped = itemDropped;
+            return this;
+        }
+
+        public int quantityDropped(Random random) {
+            return this.itemDropped == null ? 0 : this.quantityDropped ;
+        }
+
+        public Item getItemDropped(int x, Random random, int y)
+        {
+            return this.itemDropped;
         }
 
     }
