@@ -14,6 +14,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -63,6 +64,13 @@ public class StepByStep
 
         final CustomWorldGenerator customWorldGenerator = new CustomWorldGenerator(customBlock);
         GameRegistry.registerWorldGenerator(customWorldGenerator, 10); //min weight -> starts firts
+
+        GameRegistry.addRecipe(new ItemStack(customBlock), new Object[]{
+                "A  ",
+                " A ",
+                "  A",
+                'A', new ItemStack(Items.diamond)
+        });
     }
 
     /**
