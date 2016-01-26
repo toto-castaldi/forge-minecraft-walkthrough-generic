@@ -71,6 +71,11 @@ public class StepByStep
                 "  A",
                 'A', new ItemStack(Items.diamond)
         });
+
+        final Item customItem = new CustomItem("stepbystepcustomitem")
+                .setIconName(modid + ":wand")
+                ;
+        GameRegistry.registerItem(customItem, customItem.getUnlocalizedName());
     }
 
     /**
@@ -212,6 +217,26 @@ public class StepByStep
                 world.setBlock(x, y, z, block); //punta
             }
 
+        }
+    }
+
+    private class CustomItem extends Item {
+
+        private String iconName;
+
+        public CustomItem(String name) {
+            setUnlocalizedName(name);
+            setCreativeTab(CreativeTabs.tabMaterials);
+        }
+
+        public CustomItem setIconName(String iconName) {
+            this.iconName = iconName;
+            return this;
+        }
+
+        @SideOnly(Side.CLIENT)
+        public void registerIcons(IIconRegister iconRegister) {
+            this.itemIcon = iconRegister.registerIcon(this.iconName);
         }
     }
 }
